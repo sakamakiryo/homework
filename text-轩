@@ -1,0 +1,30 @@
+'''
+貌似是只能登陆云家园的网站，但是做不到判断是否是南昌大学大学生的要求
+而且这个代码有好多错误，我也不会做这个东西= =
+就现在首部写个注释，说明一下。
+'''
+import sys
+import io
+from urllib import request
+
+sys.stdout = io.TextIOWrapper
+(sys.stdout.buffer,encoding = 'utf-8')             #改变标准输出的默认编码
+#这个地方encoding='utf-8'报错了= =，不知道怎么处理
+
+
+
+url = 'https://os.ncuos.com/loginBox/login'     #登录后才能访问的网页
+
+cookie_str = r'key=789580d1d7f8c2d97574ae1d84b0104d; guid=eed2-9a05-bbad-e1e3'
+
+url = 'https://os.ncuos.com/loginBox/login'     #登录后才能访问的网页
+
+req = request.Request(url)                      #设置cookie
+req.add_header('cookie',raw_cookies)            #设置请求头
+#raw_cookies好像有not difined 的问题，不清楚
+
+req.add_header('User-Agent','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393')
+
+resp = request.urlopen(req)
+
+print(resp.read().decode('utf-8'))
